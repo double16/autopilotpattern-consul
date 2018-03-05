@@ -1,4 +1,5 @@
 FROM alpine:3.7
+MAINTAINER Vicko Vitasovic "vickovitasovic@gmail.com"
 
 ENV CONSUL_VERSION="1.0.6" \
     CONTAINERPILOT_VER="3.6.2" CONTAINERPILOT="/etc/containerpilot.json5" \
@@ -48,14 +49,3 @@ EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 8500 53 53/udp
 CMD ["/usr/local/bin/containerpilot"]
 
 HEALTHCHECK --interval=60s --timeout=10s --retries=3 CMD curl -f http://127.0.0.1:8500/ || exit 1
-
-LABEL maintainer="Patrick Double <pat@patdouble.com>" \
-      org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.license="MPL-2.0" \
-      org.label-schema.vendor="https://bitbucket.org/double16" \
-      org.label-schema.name="Consul ${CONSUL_VERSION} with the Autopilot Pattern and Prometheus Monitoring" \
-      org.label-schema.url="https://bitbucket.org/double16/autopilotpattern-consul" \
-      org.label-schema.docker.dockerfile="Dockerfile" \
-      org.label-schema.vcs-ref=$SOURCE_REF \
-      org.label-schema.vcs-type='git' \
-      org.label-schema.vcs-url="https://bitbucket.org/double16/autopilotpattern-consul.git"

@@ -8,11 +8,19 @@ services:
   # Nodes will use Docker DNS for the service (passed in via the CONSUL
   # env var) to find each other and bootstrap the cluster.
   consul:
-    build: .
+    image: vickov/autopilotpattern-consul:0.4
     restart: always
     mem_limit: 128m
     ports:
-        - 8500
+        - 8500:8500
+        - 8300:8300
+        - 8301:8301
+        - 8301:8301/udp
+        - 8302:8302
+        - 8302:8302/udp
     environment:
-      - CONSUL=consul
+      - CONSUL=consul 10.0.0.41
       - CONSUL_DATACENTER_NAME=dc1
+      - CONSUL_ADVERTISE_IP=10.0.0.40
+#      - CONTAINERPILOT_CONSUL_IP="10.0.0.40"
+#      - CONSUL_DEV=true

@@ -10,7 +10,8 @@
       port: 8500,
       {{ if .CONSUL_DEV }}exec: [
         "/bin/consul", "agent", "-server",
-        "-config-dir=/etc/consul"],
+        "-config-dir=/etc/consul",
+		"-ui"],
       {{ else }}exec: [
         "/bin/consul", "agent",
         "-server",
