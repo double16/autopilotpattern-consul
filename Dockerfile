@@ -5,7 +5,7 @@ ARG DOCKERFILE_PATH
 ARG SOURCE_TYPE
 
 ENV CONSUL="consul" \
-    CONSUL_VERSION="1.3.0" \
+    CONSUL_VERSION="1.4.4" \
     CONTAINERPILOT_VER="3.8.0" CONTAINERPILOT="/etc/containerpilot.json5" \
     NODE_EXPORTER_VERSION="0.16.0" \
     CONSUL_EXPORTER_VERSION="0.4.0" \
@@ -14,7 +14,7 @@ ENV CONSUL="consul" \
 # Alpine packages
 RUN apk --no-cache add curl bash ca-certificates jq \
 # The Consul binary
-    && export CONSUL_CHECKSUM=a6896509b72fa229496b3adda51357c95d68a796ae3328d7d6a61195d6c68bac \
+    && export CONSUL_CHECKSUM=d3bdf9817c7de9d83426d8c421eb3f37bf82c03c97860ef78fb56e148c4a9765 \
     && export archive=consul_${CONSUL_VERSION}_linux_amd64.zip \
     && curl -Lso /tmp/${archive} https://releases.hashicorp.com/consul/${CONSUL_VERSION}/${archive} \
     && echo "${CONSUL_CHECKSUM}  /tmp/${archive}" | sha256sum -c \
